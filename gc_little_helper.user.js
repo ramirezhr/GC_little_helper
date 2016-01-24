@@ -1,7 +1,7 @@
 ﻿// ==UserScript==
 // @name           GC little helper
 // @namespace      http://www.amshove.net
-// @version        11.4
+// @version        11.5
 // @include        http://www.geocaching.com/*
 // @include        https://www.geocaching.com/*
 // @include        http://labs.geocaching.com/*
@@ -187,7 +187,7 @@ var constInit = function (c) {
 
     // Set defaults
     c.scriptName = "gc_little_helper";
-    c.scriptVersion = "11.4";
+    c.scriptVersion = "11.5";
     c.anzCustom = 10;
     c.anzTemplates = 10;
     c.bookmarks_def = new Array(16, 18, 13, 14, 17, 12);
@@ -1146,11 +1146,11 @@ var mainGC = function () {
 				var head = document.getElementsByTagName('head')[0];
 				var style = document.createElement('style');
 				style.type = 'text/css';
-				style.innerHTML = ".menu li a, .menu li a:link, .Menu li a:visited { color: #93b516 !important; } ul.menu>li>a:hover,ul.menu>li>a:focus { color: #FFFFFF !important;} ul.menu>li{display: inline; position: relative;} .menu{height:18px; margin-top: -5px; margin-left: 250px;} .logo2 {  top: 18px; position: relative; } ul.menu > li > ul {position: absolute; left: 0;}";
+				style.innerHTML = ".menu li a, .menu li a:link, .Menu li a:visited { color: #93b516 !important; } ul.menu>li>a:hover,ul.menu>li>a:focus { color: #FFFFFF !important;} ul.menu>li{display: inline; position: relative;} .menu{height:18px; margin-top: -10px; margin-left: 250px;} .logo2 {  top: 18px; position: relative; } ul.menu > li > ul {position: absolute; left: 0;}";
 				head.appendChild(style);			
-				
+
 				$('ul.menu').before().prev().children().filter('img').parent().css("visibility", "visible").css("padding-top", "18px").find("img").attr("src","https://www.geocaching.com/images/tlnmasters/geocaching-logo.png").parent().addClass("logo2") ;
-		
+
 				$('nav').remove();
 			}
 			else{
@@ -1161,10 +1161,14 @@ var mainGC = function () {
 				var head = document.getElementsByTagName('head')[0];
 				var style = document.createElement('style');
 				style.type = 'text/css';
-				style.innerHTML = ".Menu li a, .Menu li a:link, .Menu li a:visited { color: #93b516 !important; } ul.Menu>li>a:hover,ul.Menu>li>a:focus { color: #FFFFFF !important;} .logged-in-user>li a {display: inline-block;}";
-				head.appendChild(style);				
+				style.innerHTML = ".Menu li a, .Menu li a:link, .Menu li a:visited { color: #93b516 !important; } ul.Menu>li>a:hover,ul.Menu>li>a:focus { color: #FFFFFF !important;} ul.Menu>li{ padding:1 0 0 0.75em !important; } .logged-in-user>li a {display: inline-block;} ";
+				head.appendChild(style);
 				
-				$('#ctl00_A1').css("visibility", "visible").css("padding-top", "18px").find("img").attr("src","https://www.geocaching.com/images/tlnmasters/geocaching-logo.png");			
+				
+				// neue GC Seiten
+				$('#ctl00_ctl21_A1').css("visibility", "visible").css("padding-top", "18px").find("img").attr("src","https://www.geocaching.com/images/tlnmasters/geocaching-logo.png");
+                // alte GC Seiten
+				$('#ctl00_A1').css("visibility", "visible").css("padding-top", "18px").find("img").attr("src","https://www.geocaching.com/images/tlnmasters/geocaching-logo.png");				
 			}
 		
            	
@@ -1219,8 +1223,8 @@ var mainGC = function () {
             if(document.getElementsByClassName("Menu").length > 0) var nav_list = document.getElementsByClassName("Menu")[0];
             else var nav_list = document.getElementsByClassName("menu")[0];
 
-            GM_addStyle('ul.Menu > li{ padding:0 0 0 0.75em !important; }  ');
-            GM_addStyle('ul.menu > li{ padding:0 0 0 0.75em !important; }  ');
+      //      GM_addStyle('ul.Menu > li{ padding:0 0 0 0.75em !important; }  ');
+      //      GM_addStyle('ul.menu > li{ padding:0 0 0 0.75em !important; }  ');
 
             var menu = document.createElement("li");
 
@@ -1377,7 +1381,17 @@ var mainGC = function () {
             if (getValue('remove_navi_videos') && document.getElementById('ctl00_hlNavVideos')) liste.removeChild(document.getElementById('ctl00_hlNavVideos').parentNode);
             if (getValue('remove_navi_shop') && document.getElementById('ctl00_hlNavShop')) liste.removeChild(document.getElementById('ctl00_hlNavShop').parentNode);
             if (getValue('remove_navi_social') && document.getElementById('ctl00_hlNavFollowUs')) liste.removeChild(document.getElementById('ctl00_hlNavFollowUs').parentNode);
-    }else if(document.getElementsByClassName("menu").length > 0){
+// new GC Site
+            if (getValue('remove_navi_learn') && document.getElementById('ctl00_ctl21_hlNavLearn')) liste.removeChild(document.getElementById('ctl00_ctl21_hlNavLearn').parentNode);
+	        if (getValue('remove_navi_partnering') && document.getElementById('ctl00_hlNavPartnering')) liste.removeChild(document.getElementById('ctl00_ctl21_hlNavPartnering').parentNode);
+            if (getValue('remove_navi_play') && document.getElementById('ctl00_ctl21_hlNavPlay')) liste.removeChild(document.getElementById('ctl00_hlNavPlay').parentNode);
+            if (getValue('remove_navi_profile') && document.getElementById('ctl00_hlNavProfile')) liste.removeChild(document.getElementById('ctl00_hlNavProfile').parentNode);
+            if (getValue('remove_navi_community') && document.getElementById('ctl00_ctl21_hlNavCommunity')) liste.removeChild(document.getElementById('ctl00_ctl21_hlNavCommunity').parentNode);
+            if (getValue('remove_navi_videos') && document.getElementById('ctl00_hlNavVideos')) liste.removeChild(document.getElementById('ctl00_hlNavVideos').parentNode);
+            if (getValue('remove_navi_shop') && document.getElementById('ctl00_ctl21_hlNavShop')) liste.removeChild(document.getElementById('ctl00_ctl21_hlNavShop').parentNode);
+            if (getValue('remove_navi_social') && document.getElementById('ctl00_hlNavFollowUs')) liste.removeChild(document.getElementById('ctl00_hlNavFollowUs').parentNode);
+	
+	}else if(document.getElementsByClassName("menu").length > 0){
         var liste = document.getElementsByClassName("menu")[0];
         // var links = liste.getElementsByTagName("a");
         var links = $('ul.menu a');
